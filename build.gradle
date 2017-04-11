@@ -1,0 +1,50 @@
+buildscript {
+    repositories { jcenter() }
+
+    dependencies {
+        classpath 'org.asciidoctor:asciidoctor-gradle-plugin:1.5.3'
+    }
+}
+
+plugins {
+    id 'com.gradle.build-scan' version '1.6'
+}
+
+task wrapper(type: Wrapper) {
+    gradleVersion = '3.5'
+}
+
+apply plugin: 'java'
+apply plugin: 'idea'
+
+group = 'io.github.yermilov'
+version = '0.1-SNAPSHOT'
+
+repositories {
+    jcenter()
+}
+
+dependencies {
+}
+
+buildScan {
+    licenseAgreementUrl = 'https://gradle.com/terms-of-service'
+    licenseAgree = 'yes'
+}
+
+apply plugin: 'org.asciidoctor.convert'
+
+asciidoctor {
+    backends = [ 'html5' ]
+
+    sources {
+        include 'article.adoc'
+    }
+
+    attributes  'sourcedir'          : file('src'),
+                'toc'                : 'left',
+                'source-highlighter' : 'coderay',
+                'icons'              : 'font',
+                'numbered'           : '',
+                'idprefix'           : ''
+}
