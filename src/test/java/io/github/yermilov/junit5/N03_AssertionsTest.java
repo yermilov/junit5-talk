@@ -15,23 +15,22 @@ import static org.junit.jupiter.api.Assertions.assertTimeoutPreemptively;
 public class N03_AssertionsTest {
 
     @Test
-    @DisplayName("Jupiter is the Fifth planet in the Solar System")
-    public void errorMessage() {
-        assertEquals("Jupiter", Planet.getByIndex(4).getName(), "Are we counting with zero-based or one-based?");
-    }
-
-    @Test
-    @DisplayName("Jupiter is the Fifth planet in the Solar System")
+    @DisplayName("multiple assertions can be checked at once")
     public void all() {
         assertAll(
                 () -> assertEquals("Jupiter", Planet.getByIndex(4).getName()),
                 () -> assertEquals("Mars", Planet.getByIndex(5).getName())
         );
-
     }
 
     @Test
-    @DisplayName("Jupiter is the Fifth planet in the Solar System")
+    @DisplayName("error messages was moved to the end of method signature")
+    public void errorMessage() {
+        assertEquals("Jupiter", Planet.getByIndex(4).getName(), "Are we counting with zero-based or one-based?");
+    }
+
+    @Test
+    @DisplayName("error messages can be generated lazily")
     public void lazyMessage() {
         assertEquals("Jupiter", Planet.getByIndex(5).getName(), () -> {
             try {
@@ -42,7 +41,7 @@ public class N03_AssertionsTest {
     }
 
     @Test
-    @DisplayName("Jupiter is the Fifth planet in the Solar System")
+    @DisplayName("expected exceptions now asserted throws")
     public void assertExceptions() {
         assertThrows(IllegalArgumentException.class, () -> {
             Planet.getByIndex(0);
@@ -51,7 +50,7 @@ public class N03_AssertionsTest {
 
     @Test
     @Tag("slow")
-    @DisplayName("Jupiter is the Fifth planet in the Solar System")
+    @DisplayName("we can check that some code is executed within a time limit")
     public void timeouts() {
         assertTimeout(ofHours(9), () -> {
             Planet.getByIndex(5).waitForOneDay();
@@ -59,8 +58,8 @@ public class N03_AssertionsTest {
     }
 
     @Test
-    @DisplayName("Jupiter is the Fifth planet in the Solar System")
-    public void timeouts2() {
+    @DisplayName("we can get results of timelimited actions and terminate them")
+    public void timeoutsWithResults() {
         String actualAtmosphere = assertTimeoutPreemptively(ofSeconds(1), () -> {
             Thread.sleep(20000);
             return Planet.getByIndex(5).getAtmosphere();
