@@ -1,6 +1,5 @@
 package io.github.yermilov.junit5;
 
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -14,15 +13,8 @@ public class N02_JUnit5BaseTest {
     }
 
     @Test
-    @DisplayName("Jupiter is the Fifth planet in the Solar System \uD83D\uDE31")
+    @DisplayName("Jupiter is the Fifth planet in the Solar System")
     public void jupiterIsFifthPlanet() {
         assertEquals("Jupiter", Planet.getByIndex(5).getName());
-    }
-
-    @Test
-    @Disabled
-    @DisplayName("Jupiter is the Fifth planet in the Solar System \uD83D\uDE31")
-    public void saturnIsFifthPlanet() {
-        assertEquals("Saturn", Planet.getByIndex(6).getName());
     }
 }
