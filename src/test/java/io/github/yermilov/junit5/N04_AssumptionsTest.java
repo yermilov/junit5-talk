@@ -2,6 +2,7 @@ package io.github.yermilov.junit5;
 
 import org.junit.jupiter.api.Test;
 
+import static io.github.yermilov.junit5.PlanetSystem.SOLAR_SYSTEM;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assumptions.assumeTrue;
 import static org.junit.jupiter.api.Assumptions.assumingThat;
@@ -9,27 +10,31 @@ import static org.junit.jupiter.api.Assumptions.assumingThat;
 public class N04_AssumptionsTest {
 
     @Test
-    void testOnlyOnCiServer() {
-        assumeTrue("CI".equals(System.getenv("ENV")));
-        // remainder of test
+    void assumeWeUseCopernicusModel() {
+        assumeTrue("Nicolaus Copernicus".equals(SOLAR_SYSTEM.getModeledBy()));
+
+        assertEquals("Jupiter", SOLAR_SYSTEM.getPlanetByIndex(5).getName());
     }
 
     @Test
-    void testOnlyOnDeveloperWorkstation() {
-        assumeTrue("DEV".equals(System.getenv("ENV")),
-                () -> "Aborting test: not on developer workstation");
-        // remainder of test
+    void assumeWeUsePtolemyModel() {
+        assumeTrue("Ptolemy".equals(SOLAR_SYSTEM.getModeledBy()), () -> "wrong model!");
+
+        assertEquals("Earth", SOLAR_SYSTEM.getPlanetByIndex(0).getName());
     }
 
     @Test
     void testInAllEnvironments() {
-        assumingThat("CI".equals(System.getenv("ENV")),
+        assumingThat("Nicolaus Copernicus".equals(SOLAR_SYSTEM.getModeledBy()),
                 () -> {
-                    // perform these assertions only on the CI server
-                    assertEquals(2, 2);
+                    assertEquals("Earth", SOLAR_SYSTEM.getPlanetByIndex(3).getName());
                 });
 
-        // perform these assertions in all environments
-        assertEquals("a string", "a string");
+        assumingThat("Ptolemy".equals(SOLAR_SYSTEM.getModeledBy()),
+                () -> {
+                    assertEquals("Earth", SOLAR_SYSTEM.getPlanetByIndex(0).getName());
+                });
+
+        assertEquals("Sun", SOLAR_SYSTEM.getStarName());
     }
 }

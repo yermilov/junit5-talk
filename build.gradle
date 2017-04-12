@@ -40,6 +40,8 @@ compileTestJava {
 }
 
 junitPlatform {
+    platformVersion "1.0.0-${milestone}"
+    logManager 'org.apache.logging.log4j.jul.LogManager'
     filters {
         tags {
             exclude 'slow'
