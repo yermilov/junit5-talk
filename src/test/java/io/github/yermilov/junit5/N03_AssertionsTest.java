@@ -15,11 +15,11 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTimeout;
 import static org.junit.jupiter.api.Assertions.assertTimeoutPreemptively;
 
-public class N03_AssertionsTest {
+class N03_AssertionsTest {
 
     @Test
     @DisplayName("multiple assertions can be checked at once")
-    public void all() {
+    void all() {
         assertAll(
                 () -> assertEquals("Jupiter", SOLAR_SYSTEM.getPlanetByIndex(4).getName()),
                 () -> assertEquals("Mars", SOLAR_SYSTEM.getPlanetByIndex(5).getName())
@@ -28,13 +28,13 @@ public class N03_AssertionsTest {
 
     @Test
     @DisplayName("error messages was moved to the end of method signature")
-    public void errorMessage() {
+    void errorMessage() {
         assertEquals("Jupiter", SOLAR_SYSTEM.getPlanetByIndex(4).getName(), "Are we counting with zero-based or one-based?");
     }
 
     @Test
     @DisplayName("error messages can be generated lazily")
-    public void lazyMessage() {
+    void lazyMessage() {
         assertEquals("Jupiter", SOLAR_SYSTEM.getPlanetByIndex(5).getName(), () -> {
             waitFor(ofHours(2));
             return "Let's think for a while, are we counting with zero-based or one-based?";
@@ -43,7 +43,7 @@ public class N03_AssertionsTest {
 
     @Test
     @DisplayName("expected exceptions now asserted throws")
-    public void assertExceptions() {
+    void assertExceptions() {
         assertThrows(IllegalArgumentException.class, () -> {
             SOLAR_SYSTEM.getPlanetByIndex(0);
         });
@@ -52,7 +52,7 @@ public class N03_AssertionsTest {
     @Test
     @Tag("slow")
     @DisplayName("we can check that some code is executed within a time limit")
-    public void timeouts() {
+    void timeouts() {
         assertTimeout(ofHours(9), () -> {
             SOLAR_SYSTEM.getPlanetByIndex(5).waitForOneDay();
         });
@@ -60,7 +60,7 @@ public class N03_AssertionsTest {
 
     @Test
     @DisplayName("we can get results of timelimited actions and terminate them")
-    public void timeoutsWithResults() {
+    void timeoutsWithResults() {
         String actualAtmosphere = assertTimeoutPreemptively(ofSeconds(1), () -> {
             waitFor(ofMinutes(1));
             return SOLAR_SYSTEM.getPlanetByIndex(5).getAtmosphere();

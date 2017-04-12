@@ -7,12 +7,12 @@ import org.junit.jupiter.api.Test;
 import static io.github.yermilov.junit5.PlanetSystem.SOLAR_SYSTEM;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-public class N05_DisabledTest {
+class N05_DisabledTest {
 
     @Test
     @Disabled("Saturn is not supported in version 5")
     @DisplayName("Saturn is the Sixth planet in the Solar System")
-    public void saturnIsFifthPlanet() {
+    void saturnIsFifthPlanet() {
         assertEquals("Saturn", SOLAR_SYSTEM.getPlanetByIndex(6).getName());
     }
 }

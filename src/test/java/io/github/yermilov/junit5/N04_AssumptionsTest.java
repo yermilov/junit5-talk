@@ -7,7 +7,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assumptions.assumeTrue;
 import static org.junit.jupiter.api.Assumptions.assumingThat;
 
-public class N04_AssumptionsTest {
+class N04_AssumptionsTest {
 
     @Test
     void assumeWeUseCopernicusModel() {
