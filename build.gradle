@@ -1,8 +1,9 @@
 buildscript {
-    repositories { jcenter() }
-
+    repositories {
+        jcenter()
+    }
     dependencies {
-        classpath 'org.asciidoctor:asciidoctor-gradle-plugin:1.5.3'
+        classpath 'org.junit.platform:junit-platform-gradle-plugin:1.0.0-M4'
     }
 }
 
@@ -14,8 +15,16 @@ task wrapper(type: Wrapper) {
     gradleVersion = '3.5'
 }
 
+ext.milestone            = 'M4'
+ext.junit4Version        = '4.12'
+ext.junitVintageVersion  = "4.12.0-${milestone}"
+ext.junitPlatformVersion = "1.0.0-${milestone}"
+ext.junitJupiterVersion  = "5.0.0-${milestone}"
+ext.log4jVersion         = '2.6.2'
+
 apply plugin: 'java'
 apply plugin: 'idea'
+apply plugin: 'org.junit.platform.gradle.plugin'
 
 group = 'io.github.yermilov'
 version = '0.1-SNAPSHOT'
@@ -24,27 +33,32 @@ repositories {
     jcenter()
 }
 
+compileTestJava {
+    sourceCompatibility = 1.8
+    targetCompatibility = 1.8
+    options.compilerArgs += '-parameters'
+}
+
+junitPlatform {
+    filters {
+        tags {
+            exclude 'slow'
+        }
+    }
+}
+
 dependencies {
+    testCompile "org.junit.jupiter:junit-jupiter-api:${junitJupiterVersion}"
+    testRuntime "org.junit.jupiter:junit-jupiter-engine:${junitJupiterVersion}"
+
+    testCompile "junit:junit:${junit4Version}"
+    testRuntime "org.junit.vintage:junit-vintage-engine:${junitVintageVersion}"
+
+    testRuntime "org.apache.logging.log4j:log4j-core:${log4jVersion}"
+    testRuntime "org.apache.logging.log4j:log4j-jul:${log4jVersion}"
 }
 
 buildScan {
     licenseAgreementUrl = 'https://gradle.com/terms-of-service'
     licenseAgree = 'yes'
-}
-
-apply plugin: 'org.asciidoctor.convert'
-
-asciidoctor {
-    backends = [ 'html5' ]
-
-    sources {
-        include 'article.adoc'
-    }
-
-    attributes  'sourcedir'          : file('src'),
-                'toc'                : 'left',
-                'source-highlighter' : 'coderay',
-                'icons'              : 'font',
-                'numbered'           : '',
-                'idprefix'           : ''
 }
