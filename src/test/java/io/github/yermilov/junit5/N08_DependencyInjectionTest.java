@@ -10,7 +10,7 @@ import java.util.Collections;
 import static io.github.yermilov.junit5.PlanetSystem.SOLAR_SYSTEM;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-class N07_DependencyInjectionTest {
+class N08_DependencyInjectionTest {
 
     @Test
     @Tag("gas giants")
@@ -20,7 +20,7 @@ class N07_DependencyInjectionTest {
 
         assertEquals("Jupiter is the Fifth planet in the Solar System", testInfo.getDisplayName());
         assertEquals(Collections.singleton("gas giants"), testInfo.getTags());
-        assertEquals("io.github.yermilov.junit5.N07_DependencyInjectionTest", testInfo.getTestClass().get().getName());
+        assertEquals("io.github.yermilov.junit5.N08_DependencyInjectionTest", testInfo.getTestClass().get().getName());
         assertEquals("jupiterIsFifthPlanet", testInfo.getTestMethod().get().getName());
     }
 }

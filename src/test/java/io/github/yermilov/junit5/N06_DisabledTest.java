@@ -7,7 +7,7 @@ import org.junit.jupiter.api.Test;
 import static io.github.yermilov.junit5.PlanetSystem.SOLAR_SYSTEM;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-class N05_DisabledTest {
+class N06_DisabledTest {
 
     @Test
     @Disabled("Saturn is not supported in version 5")

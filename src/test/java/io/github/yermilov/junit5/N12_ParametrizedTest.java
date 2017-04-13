@@ -18,7 +18,7 @@ import static io.github.yermilov.junit5.PlanetSystem.SOLAR_SYSTEM;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
-class N10_ParametrizedTest {
+class N12_ParametrizedTest {
 
     @ParameterizedTest
     @ValueSource(ints = { 1, 2, 3, 4, 5 })

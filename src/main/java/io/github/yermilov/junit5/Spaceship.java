@@ -22,8 +22,6 @@ public class Spaceship {
     public void sentTo(Planet target) {
         checkMovesCount();
 
-        System.err.println(name + " is going to " + target.getName());
-
         this.location = "space";
         this.target = target;
     }
@@ -31,23 +29,17 @@ public class Spaceship {
     public void returnHome() {
         checkMovesCount();
 
-        System.err.println(name + " is returning home");
-
         sentTo(EARTH);
     }
 
     public void land() {
         checkMovesCount();
 
-        System.err.println(name + " is landing on " + target.getName());
-
         this.location = "landed";
     }
 
     public void sentToOrbit() {
         checkMovesCount();
-
-        System.err.println(name + " is on the orbit of " + target.getName());
 
         this.location = "on orbit";
     }

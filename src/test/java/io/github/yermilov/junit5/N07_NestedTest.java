@@ -11,7 +11,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 @DisplayName("Jupiter test cases")
-class N06_NestedTest {
+class N07_NestedTest {
 
     Planet jupiter;
 

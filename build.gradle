@@ -51,6 +51,8 @@ junitPlatform {
 
 dependencies {
     testCompile "org.junit.platform:junit-platform-launcher:${junitPlatformVersion}"
+    testCompile "org.junit.platform:junit-platform-runner:${junitPlatformVersion}"
+
     testCompile "org.junit.jupiter:junit-jupiter-engine:${junitJupiterVersion}"
     testCompile "org.junit.vintage:junit-vintage-engine:${junitVintageVersion}"
 

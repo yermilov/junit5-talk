@@ -7,7 +7,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assumptions.assumeTrue;
 import static org.junit.jupiter.api.Assumptions.assumingThat;
 
-class N04_AssumptionsTest {
+class N05_AssumptionsTest {
 
     @Test
     void assumeWeUseCopernicusModel() {
@@ -24,7 +24,7 @@ class N04_AssumptionsTest {
     }
 
     @Test
-    void testInAllEnvironments() {
+    void testAllModels() {
         assumingThat("Nicolaus Copernicus".equals(SOLAR_SYSTEM.getModeledBy()),
                 () -> {
                     assertEquals("Earth", SOLAR_SYSTEM.getPlanetByIndex(3).getName());
